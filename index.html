@@ -424,17 +424,21 @@
   <script type='text/javascript'>
     function initEmbeddedMessaging() {
       try {
-        embeddedservice_bootstrap.settings.language = 'es';
+        embeddedservice_bootstrap.settings.language = 'en_US';
         embeddedservice_bootstrap.init(
           '00DKj00000rDsqH',
-          'Canal_Demo_Leads',
-          'https://di1768410678329.my.site.com/ESWCanalDemoLeads1787668138034',
-          { scrt2URL: 'https://di1768410678329.my.salesforce-scrt.com' }
+          'AxellLeads',
+          'https://di1768410678329.my.site.com/ESWAxellLeads1787689462813',
+          {
+            scrt2URL: 'https://di1768410678329.my.salesforce-scrt.com'
+          }
         );
-      } catch (err) { console.error('Error loading Embedded Messaging: ', err); }
+      } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+      }
     }
   </script>
-  <script type='text/javascript' src='https://di1768410678329.my.site.com/ESWCanalDemoLeads1787668138034/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+  <script type='text/javascript' src='https://di1768410678329.my.site.com/ESWAxellLeads1787689462813/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </body>
 </html>
