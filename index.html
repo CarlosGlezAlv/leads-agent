@@ -1,595 +1,324 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Axel | Asistente de Leads</title>
-  <meta name="description" content="Registra prospectos en tu CRM en segundos con Axel, el asistente inteligente de Salesforce Agentforce." />
-
-  <!-- Google Fonts: Exo 2 (mismo que Vimifos) -->
+  <title>Asistente de Leads | Inicio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;300;400;600;700;900&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@100;400;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --negro:   #0a0a0a;
-      --oscuro:  #111111;
-      --gris:    #1c1c1c;
-      --blanco:  #ffffff;
-      --accent:  #00a8e8;
-      --accent2: #0077b6;
-      --texto:   #cccccc;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Exo 2', sans-serif;
-      background: var(--negro);
-      color: var(--blanco);
-      overflow-x: hidden;
-    }
-
-    /* ── NAVBAR ───────────────────────────────────────────── */
-    #header-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      background: rgba(10,10,10,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .nav-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 32px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 19px;
-    }
-
-    .nav-logo-name {
-      font-size: 20px;
-      font-weight: 900;
-      color: var(--blanco);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      line-height: 1.1;
-    }
-
-    .nav-logo-sub {
-      font-size: 10px;
-      font-weight: 300;
-      color: var(--texto);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-
-    .nav-links a {
-      color: var(--texto);
-      text-decoration: none;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: color 0.2s;
-    }
-
-    .nav-links a:hover { color: var(--accent); }
-
-    .nav-cta {
-      background: var(--accent) !important;
-      color: var(--blanco) !important;
-      padding: 10px 22px !important;
-      border-radius: 3px !important;
-      font-weight: 700 !important;
-      letter-spacing: 1px !important;
-      transition: background 0.2s !important;
-    }
-
-    .nav-cta:hover { background: var(--accent2) !important; }
-
-    /* ── HERO ─────────────────────────────────────────────── */
-    .section-hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, #000000 0%, #001a2e 40%, #003355 70%, #000000 100%);
-    }
-
-    .hero-bg::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(0,168,232,0.12) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    .hero-bg::after {
-      content: '';
-      position: absolute;
-      top: -200px; right: -200px;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(0,168,232,0.18) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 140px 32px 80px;
-      width: 100%;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0,168,232,0.15);
-      border: 1px solid rgba(0,168,232,0.4);
-      color: var(--accent);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 2px;
-      margin-bottom: 28px;
-    }
-
-    .hero-title {
-      font-size: clamp(38px, 6vw, 72px);
-      font-weight: 900;
-      line-height: 1.05;
-      text-transform: uppercase;
-      letter-spacing: -1px;
-      margin-bottom: 24px;
-      max-width: 700px;
-    }
-
-    .hero-title .accent { color: var(--accent); }
-
-    .hero-desc {
-      font-size: 18px;
-      font-weight: 300;
-      color: var(--texto);
-      line-height: 1.8;
-      max-width: 520px;
-      margin-bottom: 40px;
-    }
-
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-
-    .btn-primary-hero {
-      background: var(--accent);
-      color: var(--blanco);
-      border: none;
-      padding: 16px 36px;
-      font-family: 'Exo 2', sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(0,168,232,0.35);
-    }
-
-    .btn-primary-hero:hover {
-      background: var(--accent2);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,168,232,0.45);
-    }
-
-    .btn-secondary-hero {
-      background: transparent;
-      color: var(--blanco);
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 16px 36px;
-      font-family: 'Exo 2', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .btn-secondary-hero:hover { border-color: var(--accent); color: var(--accent); }
-
-    .hero-scroll {
-      position: absolute;
-      bottom: 36px; left: 50%;
-      transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center;
-      gap: 8px;
-      color: rgba(255,255,255,0.3);
-      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    }
-
-    .hero-scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(0,168,232,0.6), transparent);
-      animation: scrollLine 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollLine {
-      0%   { transform: scaleY(0); transform-origin: top; }
-      50%  { transform: scaleY(1); transform-origin: top; }
-      100% { transform: scaleY(0); transform-origin: bottom; }
-    }
-
-    /* ── STATS ────────────────────────────────────────────── */
-    .section-stats {
-      background: var(--gris);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 48px 32px;
-    }
-
-    .stats-inner {
-      max-width: 1000px; margin: 0 auto;
-      display: flex; justify-content: space-around;
-      flex-wrap: wrap; gap: 32px; text-align: center;
-    }
-
-    .stat-item { flex: 1; min-width: 140px; }
-
-    .stat-num {
-      font-size: 48px; font-weight: 900;
-      color: var(--accent); line-height: 1; margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 11px; font-weight: 600;
-      letter-spacing: 2px; text-transform: uppercase; color: var(--texto);
-    }
-
-    /* ── SECTION TÍTULO ───────────────────────────────────── */
-    .section-titulo {
-      padding: 80px 32px 0;
-      text-align: center;
-    }
-
-    .section-titulo h2 {
-      font-size: clamp(26px, 4vw, 42px);
-      font-weight: 900; text-transform: uppercase; letter-spacing: -0.5px;
-    }
-
-    .section-titulo h2 span { color: var(--accent); }
-
-    .titulo-linea {
-      width: 48px; height: 3px;
-      background: var(--accent);
-      margin: 16px auto 0;
-    }
-
-    /* ── CARDS ────────────────────────────────────────────── */
-    .section-cards { padding: 60px 32px 80px; }
-
-    .cards-grid {
-      max-width: 1100px; margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2px;
-    }
-
-    .card-feature {
-      padding: 48px 36px;
-      display: flex; flex-direction: column; gap: 16px;
-      position: relative; overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .card-feature:hover { transform: translateY(-4px); }
-    .card-feature.c1 { background: #00a8e8; }
-    .card-feature.c2 { background: #0077b6; }
-    .card-feature.c3 { background: #023e8a; }
-
-    .card-icon { font-size: 40px; opacity: 0.9; }
-
-    .card-feature h3 {
-      font-size: 20px; font-weight: 900;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-
-    .card-feature p { font-size: 14px; font-weight: 300; line-height: 1.8; opacity: 0.9; }
-
-    .card-feature-line { width: 32px; height: 2px; background: rgba(255,255,255,0.5); margin-top: auto; }
-
-    /* ── PASOS ────────────────────────────────────────────── */
-    .section-pasos {
-      background: var(--gris);
-      padding: 80px 32px;
-    }
-
-    .pasos-inner {
-      max-width: 900px; margin: 40px auto 0;
-      display: flex; flex-direction: column;
-    }
-
-    .paso {
-      display: flex; align-items: flex-start; gap: 32px;
-      padding: 36px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .paso:last-child { border-bottom: none; }
-
-    .paso-num {
-      font-size: 64px; font-weight: 900;
-      color: rgba(0,168,232,0.15);
-      line-height: 1; min-width: 80px; text-align: center;
-    }
-
-    .paso-content h3 {
-      font-size: 20px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.5px;
-      margin-bottom: 8px; color: var(--blanco);
-    }
-
-    .paso-content p { font-size: 15px; font-weight: 300; color: var(--texto); line-height: 1.8; }
-
-    /* ── CTA ──────────────────────────────────────────────── */
-    .section-cta {
-      padding: 100px 32px;
-      text-align: center; position: relative; overflow: hidden;
-    }
-
-    .section-cta::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at center, rgba(0,168,232,0.1) 0%, transparent 70%);
-    }
-
-    .section-cta h2 {
-      font-size: clamp(30px, 5vw, 54px);
-      font-weight: 900; text-transform: uppercase;
-      margin-bottom: 16px; position: relative;
-    }
-
-    .section-cta h2 span { color: var(--accent); }
-
-    .section-cta p {
-      font-size: 17px; font-weight: 300;
-      color: var(--texto); margin-bottom: 40px; position: relative;
-    }
-
-    /* ── FOOTER ───────────────────────────────────────────── */
-    footer {
-      background: var(--negro);
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 40px 32px; text-align: center;
-    }
-
-    .footer-logo {
-      font-size: 22px; font-weight: 900;
-      letter-spacing: 2px; text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .footer-logo span { color: var(--accent); }
-
-    .footer-copy { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
-
-    /* ── RESPONSIVE ───────────────────────────────────────── */
-    @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .cards-grid { grid-template-columns: 1fr; }
-      .paso { flex-direction: column; gap: 8px; }
-      .paso-num { font-size: 40px; min-width: auto; }
+    :root{--color-azul:#013096;--color-rojo:#d71921;--color-verde:#00d95f;--color-celeste:#1498c9;}
+    *,*:before,*:after{margin:0;padding:0;box-sizing:border-box;}
+    *::-webkit-scrollbar{width:5px;}
+    *::-webkit-scrollbar-thumb{background:#d71921;}
+    *::-webkit-scrollbar-track{background:#013096;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Exo 2',sans-serif;overflow-x:hidden;}
+    /* HEADER */
+    header{padding:10px;position:fixed;width:100%;height:110px;z-index:100;background:transparent;transition:background .3s;}
+    header.header-bg{background:rgba(2,44,135,.933);}
+    .nav-top-row{display:flex;justify-content:flex-end;align-items:center;gap:20px;padding-bottom:6px;}
+    .nav-top-link{color:#fff;text-decoration:none;font-size:12px;display:flex;align-items:center;gap:6px;font-family:'Exo 2',sans-serif;}
+    .nav-top-link:hover{color:#aad4ff;}
+    .nav-divider{color:rgba(255,255,255,.4);font-size:12px;}
+    .nav-rrss{display:flex;gap:8px;align-items:center;padding-left:10px;border-left:1px solid rgba(255,255,255,.3);}
+    .nav-rrss a{color:#fff;font-size:14px;text-decoration:none;transition:color .2s;}
+    .nav-rrss a:hover{color:#aad4ff;}
+    .nav-bottom-row{display:flex;align-items:center;}
+    .nav-logo-wrap{width:33.33%;}
+    .nav-links-wrap{width:66.66%;display:flex;justify-content:flex-end;}
+    .nav-pill-links{display:flex;align-items:center;}
+    .link-pc{color:#fff;border:1px solid #fff;border-radius:25px;min-width:110px;font-size:11px;text-align:center;margin-left:10px;padding:5px 12px;text-decoration:none;font-family:'Exo 2',sans-serif;font-weight:900;transition:background .2s;}
+    .link-pc:hover{background:rgba(255,255,255,.15);color:#fff;}
+    .link-pc.active{background:#d71921;border-color:#d71921;}
+    /* HERO */
+    .section-portada{position:relative;overflow:hidden;z-index:0;height:100dvh;min-height:100dvh;}
+    #bgvid{height:100dvh;min-height:100dvh;display:block;}
+    #video-bgvid{width:100%;height:100dvh;object-fit:cover;display:block;}
+    .portada-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(1,48,150,.55) 60%,rgba(1,48,150,.75) 100%);z-index:1;}
+    .portado-texto{position:absolute;bottom:12vh;left:0;width:100%;z-index:2;}
+    .content-0{position:relative;display:table;}
+    .portado-texto h1{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.2rem);color:#fff;padding-top:10px;text-transform:uppercase;letter-spacing:1px;line-height:1.15;}
+    .portado-texto h6{font-family:'Exo 2',sans-serif;font-weight:100;font-size:18px;color:#fff;padding-top:10px;line-height:1.7;max-width:520px;}
+    .btn-saber-mas{display:inline-block;margin-top:24px;color:#fff;border:2px solid #fff;border-radius:25px;padding:8px 28px;font-family:'Exo 2',sans-serif;font-weight:900;font-size:13px;letter-spacing:1px;text-decoration:none;transition:background .25s,color .25s;background:transparent;}
+    .btn-saber-mas:hover{background:#fff;color:var(--color-azul);}
+    @keyframes fadeInUpText{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+    .fadeInUpText{animation:fadeInUpText 1s ease forwards;}
+    /* SWIPER CARDS */
+    .section-especies{background:#fff;overflow:hidden;}
+    .swiper-slide{height:550px;display:flex;align-items:stretch;}
+    .card-especie{width:100%;padding:48px 36px;display:flex;flex-direction:column;justify-content:flex-start;gap:16px;}
+    .title-especie-card{font-family:'Exo 2',sans-serif;font-weight:900;font-size:22px;color:#fff;text-transform:uppercase;letter-spacing:.5px;}
+    .text-especie-card{font-family:'Exo 2',sans-serif;font-weight:100;font-size:15px;color:rgba(255,255,255,.9);line-height:1.8;}
+    .button-card{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:#fff;border:2px solid #fff;border-radius:25px;padding:8px 22px;font-family:'Exo 2',sans-serif;font-weight:900;font-size:12px;letter-spacing:1px;text-decoration:none;transition:background .2s;width:fit-content;}
+    .button-card:hover{background:rgba(255,255,255,.2);color:#fff;}
+    .swiper-button-prev,.swiper-button-next{color:#fff;background:rgba(0,0,0,.3);width:44px;height:44px;border-radius:50%;}
+    .swiper-button-prev::after,.swiper-button-next::after{font-size:16px;}
+    /* SECTION TITULO */
+    .section-titulo{padding:70px 0 0;text-align:center;}
+    .h1-titulo{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(1.8rem,3vw,2.8rem);color:var(--color-azul);text-transform:uppercase;}
+    /* YOUTUBE SPLIT */
+    .section-youtube{width:100%;position:relative;}
+    @media(min-width:1024px){.section-youtube::before{content:'';display:block;position:absolute;top:0;right:0;width:50%;height:100%;background:#f00;}.section-youtube #left-content,.section-youtube #right-content{position:relative;z-index:1;}}
+    .titulo-youtube{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,5rem);color:var(--color-azul);line-height:1;text-transform:uppercase;}
+    .descripcion-iframes{font-family:'Exo 2',sans-serif;font-weight:100;font-size:15px;color:#333;line-height:1.8;margin-top:16px;}
+    .btn-youtube{font-family:'Exo 2',sans-serif;font-weight:900;letter-spacing:1px;margin-top:20px;border-radius:25px;padding:10px 30px;}
+    /* PASOS SPLIT VERDE */
+    .section-pasos{width:100%;position:relative;background:#f8f9fa;}
+    @media(min-width:1024px){.section-pasos::before{content:'';display:block;position:absolute;top:0;left:0;width:50%;height:100%;background:var(--color-verde);}.section-pasos #left-pasos,.section-pasos #right-pasos{position:relative;z-index:1;}}
+    /* CTA */
+    .section-registro{background:var(--color-azul);padding:80px 0;position:relative;}
+    .section-registro::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--color-rojo);}
+    .registro-inner{max-width:700px;margin:0 auto;text-align:center;padding:0 24px;}
+    .registro-inner h3{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(1.5rem,3vw,2.5rem);color:#fff;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+    .registro-inner p{font-family:'Exo 2',sans-serif;font-weight:100;font-size:17px;color:rgba(255,255,255,.85);line-height:1.8;margin-bottom:36px;}
+    .btn-registro{display:inline-block;background:var(--color-rojo);color:#fff;border:none;border-radius:25px;padding:14px 40px;font-family:'Exo 2',sans-serif;font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 20px rgba(215,25,33,.4);}
+    .btn-registro:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(215,25,33,.5);}
+    /* FOOTER */
+    .section-footer{background:var(--color-azul);padding:40px 0 20px;}
+    .footer-logo-text{font-family:'Exo 2',sans-serif;font-weight:900;font-size:24px;color:#fff;text-transform:uppercase;letter-spacing:2px;}
+    .footer-copy{font-family:'Exo 2',sans-serif;font-weight:100;font-size:12px;color:rgba(255,255,255,.5);margin-top:8px;letter-spacing:1px;}
+    .footer-rrss{display:flex;gap:14px;justify-content:flex-end;align-items:center;}
+    .footer-rrss a{color:rgba(255,255,255,.6);font-size:18px;text-decoration:none;transition:color .2s;}
+    .footer-rrss a:hover{color:#fff;}
+    /* MOBILE */
+    .section-especies-mobile{display:none;}
+    @media(max-width:767px){
+      header{height:auto;padding:12px 16px;}
+      .nav-top-row{display:none;}
+      .nav-logo-wrap{width:50%;}
+      .nav-links-wrap{width:50%;}
+      .link-pc{min-width:70px;font-size:9px;margin-left:4px;padding:4px 6px;}
+      .portado-texto h1{font-size:1.6rem;}
+      .portado-texto h6{font-size:15px;}
+      .swiper-slide{height:400px;}
+      .section-especies-mobile{display:flex;flex-wrap:wrap;}
+      .section-especies{display:none!important;}
     }
   </style>
 </head>
 <body>
-
-  <!-- NAVBAR -->
-  <header id="header-nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <div class="nav-logo-icon">🤖</div>
-        <div>
-          <div class="nav-logo-name">Axel</div>
-          <div class="nav-logo-sub">Asistente de Leads</div>
+  <!-- HEADER -->
+  <header id="main-header">
+    <div class="container">
+      <div class="nav-top-row">
+        <a class="nav-top-link" href="#hablar"><i class="fas fa-envelope"></i> CONTACTO</a>
+        <span class="nav-divider">|</span>
+        <a class="nav-top-link" href="tel:+528008000000"><i class="fas fa-phone"></i> 800 000-0000</a>
+        <span class="nav-divider">|</span>
+        <a class="nav-top-link" href="#"><i class="fas fa-users"></i> CLIENTES</a>
+        <div class="nav-rrss">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-      </a>
-      <ul class="nav-links">
-        <li><a href="#como-funciona">Cómo funciona</a></li>
-        <li><a href="#beneficios">Beneficios</a></li>
-        <li>
-          <a href="#" class="nav-cta"
-            onclick="document.querySelector('button[embeddedmessaging-openbutton]')?.click(); return false;">
-            💬 Hablar con Axel
-          </a>
-        </li>
-      </ul>
+      </div>
+      <div class="nav-bottom-row">
+        <div class="nav-logo-wrap">
+          <span style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:28px;color:#fff;letter-spacing:3px;text-transform:uppercase;">LEADS<span style="color:#d71921;">.</span>AI</span>
+        </div>
+        <div class="nav-links-wrap">
+          <nav class="nav-pill-links">
+            <a class="link-pc active" href="#">INICIO</a>
+            <a class="link-pc" href="#servicios">SERVICIOS</a>
+            <a class="link-pc" href="#como-funciona">COMO FUNCIONA</a>
+            <a class="link-pc" href="#hablar">CONTACTO</a>
+          </nav>
+        </div>
+      </div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="section-hero">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-      <div class="hero-badge">
-        <i class="fa-solid fa-bolt"></i>
-        Powered by Salesforce Agentforce
-      </div>
-      <h1 class="hero-title">
-        Registra prospectos<br>
-        en tu CRM<br>
-        <span class="accent">en segundos</span>
-      </h1>
-      <p class="hero-desc">
-        Habla con Axel, nuestro asistente inteligente. Él recopila los datos
-        de tu prospecto, verifica duplicados y los guarda directamente en
-        Salesforce — sin formularios, sin fricción.
-      </p>
-      <div class="hero-actions">
-        <button class="btn-primary-hero"
-          onclick="document.querySelector('button[embeddedmessaging-openbutton]')?.click()">
-          💬 Hablar con Axel
-        </button>
-        <button class="btn-secondary-hero"
-          onclick="document.getElementById('como-funciona').scrollIntoView({behavior:'smooth'})">
-          Saber más &nbsp;→
-        </button>
-      </div>
-    </div>
-    <div class="hero-scroll">
-      <div class="hero-scroll-line"></div>
-      Scroll
+  <section class="section-portada">
+    <div id="bgvid">
+      <video id="video-bgvid" preload="auto" autoplay playsinline muted loop>
+        <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      </video>
+      <div class="portada-overlay"></div>
+      <section class="portado-texto fadeInUpText">
+        <div class="container">
+          <div class="content-0">
+            <h1>Registra tus prospectos<br>en segundos</h1>
+            <h6>Nuestro asistente inteligente recopila los datos del prospecto,<br>verifica duplicados y los guarda directamente en Salesforce.<br>Sin formularios. Sin friccion.</h6>
+            <a href="#hablar" class="btn-saber-mas">HABLAR AHORA...</a>
+          </div>
+        </div>
+      </section>
     </div>
   </section>
 
-  <!-- STATS -->
-  <section class="section-stats">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Formularios</div>
+  <!-- SWIPER CARDS -->
+  <div id="servicios" style="position:relative;top:-110px;"></div>
+  <section class="section-especies d-none d-md-block">
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background:#00a8e8;">
+          <div class="card-especie d-flex justify-content-start align-items-stretch flex-column">
+            <div style="font-size:70px;">&#x1F680;</div>
+            <h1 class="title-especie-card mb-2">REGISTRO INSTANTANEO</h1>
+            <p class="text-especie-card">Guarda el lead en Salesforce en tiempo real durante la conversacion. Sin pasos intermedios, sin esperas.</p>
+            <br><br>
+            <a href="#hablar" class="button-card"><i class="fa fa-plus"></i> COMENZAR AHORA</a>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background:#013096;">
+          <div class="card-especie d-flex justify-content-start align-items-stretch flex-column">
+            <div style="font-size:70px;">&#x1F50D;</div>
+            <h1 class="title-especie-card mb-2">SIN DUPLICADOS</h1>
+            <p class="text-especie-card">Verifica automaticamente si el prospecto ya existe en Salesforce antes de crear el registro. CRM siempre limpio.</p>
+            <br><br>
+            <a href="#hablar" class="button-card"><i class="fa fa-plus"></i> CONOCE MAS</a>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background:#d71921;">
+          <div class="card-especie d-flex justify-content-start align-items-stretch flex-column">
+            <div style="font-size:70px;">&#x1F916;</div>
+            <h1 class="title-especie-card mb-2">IA CONVERSACIONAL</h1>
+            <p class="text-especie-card">Solo una conversacion natural para capturar todos los datos. Sin formularios, sin friccion.</p>
+            <br><br>
+            <a href="#hablar" class="button-card"><i class="fa fa-plus"></i> CONOCE MAS</a>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background:#38ba9b;">
+          <div class="card-especie d-flex justify-content-start align-items-stretch flex-column">
+            <div style="font-size:70px;">&#x26A1;</div>
+            <h1 class="title-especie-card mb-2">24/7 DISPONIBLE</h1>
+            <p class="text-especie-card">Tu asistente trabaja las 24 horas, los 7 dias de la semana. Nunca pierdas un prospecto por falta de atencion.</p>
+            <br><br>
+            <a href="#hablar" class="button-card"><i class="fa fa-plus"></i> CONOCE MAS</a>
+          </div>
+        </div>
+        <div class="swiper-slide" style="background:#fab116;">
+          <div class="card-especie d-flex justify-content-start align-items-stretch flex-column">
+            <div style="font-size:70px;">&#x1F4CA;</div>
+            <h1 class="title-especie-card mb-2">100% SALESFORCE</h1>
+            <p class="text-especie-card">Conexion nativa con Salesforce CRM. Los datos llegan directos a tu pipeline sin configuraciones complejas.</p>
+            <br><br>
+            <a href="#hablar" class="button-card"><i class="fa fa-plus"></i> CONOCE MAS</a>
+          </div>
+        </div>
       </div>
-      <div class="stat-item">
-        <div class="stat-num">&lt;30s</div>
-        <div class="stat-label">Registro de lead</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Integrado con Salesforce</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">24/7</div>
-        <div class="stat-label">Disponibilidad</div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <!-- Cards mobile -->
+  <section class="section-especies-mobile">
+    <a href="#hablar" style="background:#00a8e8;width:50%;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+      <div style="font-size:36px;">&#x1F680;</div><h4 class="title-especie-card" style="font-size:13px;text-align:center;">REGISTRO</h4>
+    </a>
+    <a href="#hablar" style="background:#013096;width:50%;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+      <div style="font-size:36px;">&#x1F50D;</div><h4 class="title-especie-card" style="font-size:13px;text-align:center;">DUPLICADOS</h4>
+    </a>
+    <a href="#hablar" style="background:#d71921;width:50%;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+      <div style="font-size:36px;">&#x1F916;</div><h4 class="title-especie-card" style="font-size:13px;text-align:center;">IA</h4>
+    </a>
+    <a href="#hablar" style="background:#38ba9b;width:50%;padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-decoration:none;">
+      <div style="font-size:36px;">&#x26A1;</div><h4 class="title-especie-card" style="font-size:13px;text-align:center;">24/7</h4>
+    </a>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <div id="como-funciona" style="position:relative;top:-110px;"></div>
+  <section class="section-titulo">
+    <div class="container"><div class="row"><div class="col-12 text-center"><h1 class="m-0 h1-titulo">Como funciona</h1></div></div></div>
+  </section>
+
+  <!-- SPLIT ROJO (estilo YouTube de Vimifos) -->
+  <section class="section-youtube py-5">
+    <div class="container py-4">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6 pt-3 pt-lg-5" id="left-content">
+          <h2 class="titulo-youtube">ASISTENTE<br>INTELIGENTE<br>_</h2>
+          <p class="descripcion-iframes">Nuestro asistente basado en Salesforce Agentforce guia al usuario en una conversacion natural para capturar todos los datos del prospecto y registrarlos automaticamente en el CRM.</p>
+          <a href="#hablar" class="btn btn-danger btn-youtube text-white d-inline-block mt-3" style="border-radius:25px;font-family:'Exo 2',sans-serif;font-weight:900;letter-spacing:1px;">HABLAR AHORA</a>
+        </div>
+        <div class="col-12 col-md-6 pt-4 pt-md-0" id="right-content">
+          <div style="background:rgba(0,0,0,.1);border-radius:12px;padding:32px;min-height:280px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;">
+            <div style="font-size:64px;">&#x1F4AC;</div>
+            <p style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:20px;color:#fff;text-transform:uppercase;letter-spacing:1px;text-align:center;">Chat en tiempo real</p>
+            <p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:14px;color:rgba(255,255,255,.85);text-align:center;line-height:1.8;">Abre el chat y comienza a registrar prospectos ahora mismo</p>
+            <button class="btn-saber-mas" style="margin-top:8px;" onclick="document.querySelector('button[embeddedmessaging-openbutton]')?.click()">INICIAR CHAT</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- BENEFICIOS -->
-  <section id="beneficios">
-    <div class="section-titulo">
-      <h2>¿Por qué <span>Axel</span>?</h2>
-      <div class="titulo-linea"></div>
-    </div>
-    <div class="section-cards">
-      <div class="cards-grid">
-        <div class="card-feature c1">
-          <div class="card-icon">🚀</div>
-          <h3>Registro instantáneo</h3>
-          <p>Axel guarda el lead en Salesforce en tiempo real durante la conversación, sin pasos intermedios.</p>
-          <div class="card-feature-line"></div>
-        </div>
-        <div class="card-feature c2">
-          <div class="card-icon">🔍</div>
-          <h3>Detección de duplicados</h3>
-          <p>Verifica automáticamente si el prospecto ya existe antes de crear el registro, evitando duplicados.</p>
-          <div class="card-feature-line"></div>
-        </div>
-        <div class="card-feature c3">
-          <div class="card-icon">🤖</div>
-          <h3>IA conversacional</h3>
-          <p>Sin formularios. Solo una conversación natural para capturar todos los datos que necesitas.</p>
-          <div class="card-feature-line"></div>
-        </div>
+  <!-- SPLIT VERDE (estilo Spotify de Vimifos) -->
+  <section class="section-pasos py-0">
+    <div class="row g-0">
+      <div class="col-12 col-md-6" id="left-pasos" style="background:var(--color-verde);padding:64px 48px;min-height:400px;display:flex;flex-direction:column;justify-content:center;">
+        <h2 style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(2rem,5vw,5rem);color:var(--color-azul);line-height:1;text-transform:uppercase;">PASOS<br>SIMPLES<br>_</h2>
+        <p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:15px;color:var(--color-azul);line-height:1.8;margin-top:16px;">En menos de 30 segundos tienes tu lead registrado y listo para seguimiento.</p>
       </div>
-    </div>
-  </section>
-
-  <!-- CÓMO FUNCIONA -->
-  <section id="como-funciona" class="section-pasos">
-    <div class="section-titulo" style="padding: 0 32px 0;">
-      <h2>Cómo <span>funciona</span></h2>
-      <div class="titulo-linea"></div>
-    </div>
-    <div class="pasos-inner">
-      <div class="paso">
-        <div class="paso-num">01</div>
-        <div class="paso-content">
-          <h3>Abre el chat</h3>
-          <p>Haz clic en "Hablar con Axel". El asistente se abre directamente en tu navegador, sin descargas ni registros previos.</p>
+      <div class="col-12 col-md-6" id="right-pasos" style="padding:64px 48px;background:#fff;">
+        <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(1,48,150,.1);">
+          <div style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:48px;color:rgba(1,48,150,.15);line-height:1;min-width:60px;">01</div>
+          <div><h4 style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:16px;color:var(--color-azul);text-transform:uppercase;margin-bottom:4px;">ABRE EL CHAT</h4><p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:14px;color:#555;line-height:1.7;">Haz clic en el boton de chat. El asistente se abre al instante en tu navegador.</p></div>
         </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">02</div>
-        <div class="paso-content">
-          <h3>Proporciona los datos</h3>
-          <p>Axel te guía con preguntas simples: nombre, empresa, teléfono, correo y cualquier dato relevante del prospecto.</p>
+        <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(1,48,150,.1);">
+          <div style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:48px;color:rgba(1,48,150,.15);line-height:1;min-width:60px;">02</div>
+          <div><h4 style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:16px;color:var(--color-azul);text-transform:uppercase;margin-bottom:4px;">DA LOS DATOS</h4><p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:14px;color:#555;line-height:1.7;">El asistente pregunta nombre, empresa, telefono y correo del prospecto.</p></div>
         </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">03</div>
-        <div class="paso-content">
-          <h3>Verificación automática</h3>
-          <p>El asistente busca en Salesforce si el lead ya existe para evitar duplicados antes de crear el registro.</p>
+        <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid rgba(1,48,150,.1);">
+          <div style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:48px;color:rgba(1,48,150,.15);line-height:1;min-width:60px;">03</div>
+          <div><h4 style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:16px;color:var(--color-azul);text-transform:uppercase;margin-bottom:4px;">VERIFICACION</h4><p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:14px;color:#555;line-height:1.7;">Se busca automaticamente en Salesforce para evitar duplicados.</p></div>
         </div>
-      </div>
-      <div class="paso">
-        <div class="paso-num">04</div>
-        <div class="paso-content">
-          <h3>Lead guardado en CRM</h3>
-          <p>En menos de 30 segundos, el prospecto queda registrado en Salesforce y listo para seguimiento.</p>
+        <div style="display:flex;gap:20px;padding:20px 0;">
+          <div style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:48px;color:rgba(1,48,150,.15);line-height:1;min-width:60px;">04</div>
+          <div><h4 style="font-family:'Exo 2',sans-serif;font-weight:900;font-size:16px;color:var(--color-azul);text-transform:uppercase;margin-bottom:4px;">LEAD GUARDADO</h4><p style="font-family:'Exo 2',sans-serif;font-weight:100;font-size:14px;color:#555;line-height:1.7;">El prospecto queda registrado en tu CRM en tiempo real.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="section-cta">
-    <h2>¿Listo para <span>probarlo</span>?</h2>
-    <p>Habla con Axel ahora mismo y registra tu primer lead en segundos.</p>
-    <button class="btn-primary-hero"
-      onclick="document.querySelector('button[embeddedmessaging-openbutton]')?.click()">
-      💬 Comenzar ahora
-    </button>
+  <div id="hablar" style="position:relative;top:-110px;"></div>
+  <section class="section-registro">
+    <div class="registro-inner">
+      <h3>Listo para registrar<br>tu primer lead?</h3>
+      <p>Abre el chat ahora mismo y comprueba lo facil que es registrar prospectos en tu CRM con inteligencia artificial.</p>
+      <button class="btn-registro" onclick="document.querySelector('button[embeddedmessaging-openbutton]')?.click()">HABLAR CON EL ASISTENTE</button>
+    </div>
   </section>
 
   <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo">Axel <span>·</span> CRM</div>
-    <div class="footer-copy">© 2026 · Powered by Salesforce Agentforce</div>
+  <footer class="section-footer">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12 col-md-6">
+          <div class="footer-logo-text">LEADS<span style="color:#d71921;">.</span>AI</div>
+          <div class="footer-copy">2026 - Powered by Salesforce Agentforce</div>
+        </div>
+        <div class="col-12 col-md-6 mt-3 mt-md-0">
+          <div class="footer-rrss">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </footer>
 
-  <!-- SNIPPET SALESFORCE — Canal Demo Leads -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.mySwiper',{slidesPerView:3,spaceBetween:0,navigation:{nextEl:'.swiper-button-next',prevEl:'.swiper-button-prev'},breakpoints:{0:{slidesPerView:1},640:{slidesPerView:2},1024:{slidesPerView:3}}});
+    const hdr=document.getElementById('main-header');
+    window.addEventListener('scroll',()=>hdr.classList.toggle('header-bg',window.scrollY>60));
+  </script>
+
   <script type='text/javascript'>
     function initEmbeddedMessaging() {
       try {
@@ -598,19 +327,12 @@
           '00DKj00000rDsqH',
           'Canal_Demo_Leads',
           'https://di1768410678329.my.site.com/ESWCanalDemoLeads1787668138034',
-          {
-            scrt2URL: 'https://di1768410678329.my.salesforce-scrt.com'
-          }
+          { scrt2URL: 'https://di1768410678329.my.salesforce-scrt.com' }
         );
-      } catch (err) {
-        console.error('Error loading Embedded Messaging: ', err);
-      }
+      } catch (err) { console.error('Error loading Embedded Messaging: ', err); }
     }
   </script>
-  <script type='text/javascript'
-    src='https://di1768410678329.my.site.com/ESWCanalDemoLeads1787668138034/assets/js/bootstrap.min.js'
-    onload='initEmbeddedMessaging()'>
-  </script>
+  <script type='text/javascript' src='https://di1768410678329.my.site.com/ESWCanalDemoLeads1787668138034/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
 </body>
 </html>
