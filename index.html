@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -37,18 +37,43 @@
     .link-pc:hover{background:rgba(255,255,255,.15);color:#fff;}
     .link-pc.active{background:#d71921;border-color:#d71921;}
     /* HERO */
-    .section-portada{position:relative;overflow:hidden;z-index:0;height:100dvh;min-height:100dvh;}
-    #bgvid{height:100dvh;min-height:100dvh;display:block;}
-    #video-bgvid{width:100%;height:100dvh;object-fit:cover;display:block;}
-    .portada-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.35) 0%,rgba(1,48,150,.55) 60%,rgba(1,48,150,.75) 100%);z-index:1;}
+    .section-portada{position:relative;overflow:hidden;z-index:0;height:100dvh;min-height:100dvh;background:linear-gradient(160deg,#e8f4ff 0%,#c8e8f8 30%,#a8d8f0 60%,#d0ecf8 100%);}
+    #bgvid{height:100dvh;min-height:100dvh;display:block;position:relative;}
+
+    /* Onda azul animada — clon exacto del hero de Vimifos */
+    .hero-wave-wrap{position:absolute;inset:0;overflow:hidden;z-index:0;}
+    .hero-wave-wrap svg{position:absolute;top:50%;left:50%;transform:translate(-30%,-50%);width:85vw;max-width:900px;opacity:.85;}
+
+    @keyframes waveFloat{
+      0%  {transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+      33% {transform:translate(-28%,-52%) rotate(3deg) scale(1.03);}
+      66% {transform:translate(-32%,-48%) rotate(-2deg) scale(.98);}
+      100%{transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+    }
+    @keyframes waveFloat2{
+      0%  {transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+      33% {transform:translate(-32%,-53%) rotate(-4deg) scale(1.04);}
+      66% {transform:translate(-28%,-47%) rotate(3deg) scale(.97);}
+      100%{transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+    }
+    @keyframes waveFloat3{
+      0%  {transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+      50% {transform:translate(-29%,-51%) rotate(2deg) scale(1.02);}
+      100%{transform:translate(-30%,-50%) rotate(0deg) scale(1);}
+    }
+    .wave-path-1{animation:waveFloat 8s ease-in-out infinite;}
+    .wave-path-2{animation:waveFloat2 10s ease-in-out infinite;}
+    .wave-path-3{animation:waveFloat3 12s ease-in-out infinite;}
+
     .portado-texto{position:absolute;bottom:12vh;left:0;width:100%;z-index:2;}
     .content-0{position:relative;display:table;}
-    .portado-texto h1{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.2rem);color:#fff;padding-top:10px;text-transform:uppercase;letter-spacing:1px;line-height:1.15;}
-    .portado-texto h6{font-family:'Exo 2',sans-serif;font-weight:100;font-size:18px;color:#fff;padding-top:10px;line-height:1.7;max-width:520px;}
-    .btn-saber-mas{display:inline-block;margin-top:24px;color:#fff;border:2px solid #fff;border-radius:25px;padding:8px 28px;font-family:'Exo 2',sans-serif;font-weight:900;font-size:13px;letter-spacing:1px;text-decoration:none;transition:background .25s,color .25s;background:transparent;}
-    .btn-saber-mas:hover{background:#fff;color:var(--color-azul);}
+    .portado-texto h1{font-family:'Exo 2',sans-serif;font-weight:900;font-size:clamp(2rem,4vw,3.2rem);color:#1a2a5e;padding-top:10px;letter-spacing:0px;line-height:1.15;}
+    .portado-texto h6{font-family:'Exo 2',sans-serif;font-weight:100;font-size:16px;color:#2a3a6e;padding-top:10px;line-height:1.7;max-width:520px;}
+    .btn-saber-mas{display:inline-block;margin-top:24px;color:#1a2a5e;border:1.5px solid #1a2a5e;border-radius:25px;padding:8px 28px;font-family:'Exo 2',sans-serif;font-weight:900;font-size:13px;letter-spacing:1px;text-decoration:none;transition:background .25s,color .25s;background:transparent;}
+    .btn-saber-mas:hover{background:#1a2a5e;color:#fff;}
     @keyframes fadeInUpText{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
     .fadeInUpText{animation:fadeInUpText 1s ease forwards;}
+
     /* SWIPER CARDS */
     .section-especies{background:#fff;overflow:hidden;}
     .swiper-slide{height:550px;display:flex;align-items:stretch;}
@@ -138,10 +163,59 @@
   <!-- HERO -->
   <section class="section-portada">
     <div id="bgvid">
-      <video id="video-bgvid" preload="auto" autoplay playsinline muted loop>
-        <source src="https://videos.pexels.com/video-files/3209828/3209828-uhd_2560_1440_25fps.mp4" type="video/mp4">
-      </video>
-      <div class="portada-overlay"></div>
+      <!-- Onda azul SVG animada — idéntica al hero de Vimifos -->
+      <div class="hero-wave-wrap">
+        <svg class="wave-path-1" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cinta azul principal -->
+          <path d="M900,120 C750,80 600,300 400,280 C200,260 50,400 0,480 L0,520 C60,440 220,310 420,330 C620,350 770,130 900,170 Z"
+            fill="url(#grad1)" opacity="0.7"/>
+          <path d="M900,80 C740,40 580,260 380,240 C180,220 30,360 0,440 L0,470 C40,390 190,250 390,270 C590,290 750,90 900,120 Z"
+            fill="url(#grad2)" opacity="0.5"/>
+          <!-- Brillo en la cinta -->
+          <path d="M900,95 C760,60 610,270 410,255 C210,240 55,375 0,455 L0,460 C58,380 213,246 413,261 C613,276 763,66 900,101 Z"
+            fill="white" opacity="0.25"/>
+          <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="900" y2="600" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#5bc8f5"/>
+              <stop offset="40%" stop-color="#1a90d4"/>
+              <stop offset="100%" stop-color="#0d5fa0"/>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="600" x2="900" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#a8dff5"/>
+              <stop offset="50%" stop-color="#2fa8e0"/>
+              <stop offset="100%" stop-color="#1468b0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <!-- Segunda cinta más delgada, desfasada -->
+        <svg class="wave-path-2" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg"
+          style="position:absolute;top:50%;left:50%;transform:translate(-25%,-45%);width:75vw;max-width:800px;opacity:.65;">
+          <path d="M900,200 C720,140 560,360 340,320 C120,280 -20,440 0,520 L0,540 C20,465 155,302 375,342 C595,382 730,162 900,220 Z"
+            fill="url(#grad3)" opacity="0.8"/>
+          <path d="M900,175 C715,115 545,335 325,298 C105,261 -15,418 0,498 L0,518 C20,438 148,276 368,313 C588,350 718,136 900,196 Z"
+            fill="white" opacity="0.2"/>
+          <defs>
+            <linearGradient id="grad3" x1="900" y1="0" x2="0" y2="600" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#7dd8f8"/>
+              <stop offset="50%" stop-color="#3ab5e8"/>
+              <stop offset="100%" stop-color="#0a78c2"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <!-- Tercera cinta fina de acento -->
+        <svg class="wave-path-3" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg"
+          style="position:absolute;top:50%;left:50%;transform:translate(-35%,-55%);width:70vw;max-width:750px;opacity:.45;">
+          <path d="M900,250 C700,180 520,400 300,360 C80,320 -30,470 0,550 L0,560 C35,482 130,330 350,370 C570,410 700,202 900,270 Z"
+            fill="url(#grad4)" opacity="0.9"/>
+          <defs>
+            <linearGradient id="grad4" x1="0" y1="0" x2="900" y2="600" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#b8e8f8"/>
+              <stop offset="100%" stop-color="#2090d8"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <!-- Texto del hero -->
       <section class="portado-texto fadeInUpText">
         <div class="container">
           <div class="content-0">
@@ -153,6 +227,7 @@
       </section>
     </div>
   </section>
+
 
   <!-- SWIPER CARDS -->
   <div id="servicios" style="position:relative;top:-110px;"></div>
